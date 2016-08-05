@@ -4,11 +4,18 @@ branches:
   - develop/*
 skip_tags: true
 configuration: Release
+install:
+- ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/install-nuget-3-3-0.ps1'))
+cache: '%USERPROFILE%\.nuget\packages -> **\project.json'
 nuget:
   account_feed: true
   project_feed: true
+before_build:
+- ps: nuget restore src -Verbosity quiet
 build:
-  publish_nuget: true
-  publish_nuget_symbols: true
-  include_nuget_references: true
+  project: src\Extensions.sln
+  parallel: true
   verbosity: minimal
+artifacts:
+- path: bin\**\*.nupkg
+  name: NuGet Package
