@@ -13,10 +13,8 @@ nuget:
   project_feed: true
 before_build:
 - ps: nuget restore src -Verbosity quiet
-build:
-  project: src\Extensions.sln
-  parallel: true
-  verbosity: minimal
+build_script:
+- ps: build.ps1
 artifacts:
 - path: bin\**\*.nupkg
   name: NuGet Package
