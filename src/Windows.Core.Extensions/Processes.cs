@@ -1,0 +1,54 @@
+﻿// Copyright (c) to owners found in https://github.com/arlm/Extensions/blob/master/COPYRIGHT.md. All rights reserved.
+// Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+
+namespace Windows.Core.Extensions
+{
+    using System;
+    using System.Diagnostics;
+
+    public static class Processes
+    {
+        public static bool IsRunningOnUnix
+        {
+            get
+            {
+                int p = (int)Environment.OSVersion.Platform;
+
+                return (p == 4) || (p == 6) || (p == 128);
+            }
+        }
+
+        public static Process Parent(this Process process)
+        {
+            return FindPidFromIndexedProcessName(FindIndexedProcessName(process.Id));
+        }
+
+        private static string FindIndexedProcessName(int pid)
+        {
+            var processName = Process.GetProcessById(pid).ProcessName;
+            var processesByName = Process.GetProcessesByName(processName);
+            string processIndexdName = null;
+
+            for (var index = 0; index < processesByName.Length; index++)
+            {
+                processIndexdName = index == 0 ? processName : processName + "#" + index;
+                var processId = new PerformanceCounter("Process", "ID Process", processIndexdName);
+                if ((int)processId.NextValue() == pid)
+                {
+                    return processIndexdName;
+                }
+            }
+
+            return processIndexdName;
+        }
+
+        private static Process FindPidFromIndexedProcessName(string indexedProcessName)
+        {
+            var parentId = new PerformanceCounter("Process", "Creating Process ID", indexedProcessName);
+
+            var processId = (int)parentId.NextValue();
+
+            return processId == 0 ? null : Process.GetProcessById(processId);
+        }
+    }
+}

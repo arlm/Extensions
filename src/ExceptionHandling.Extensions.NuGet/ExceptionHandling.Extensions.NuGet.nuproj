@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), EnlistmentInfo.props))\EnlistmentInfo.props" Condition=" '$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), EnlistmentInfo.props))' != '' " />  
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|AnyCPU">
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|AnyCPU">
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExceptionHandling.Extensions\ExceptionHandling.Extensions.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ExceptionHandling.Extensions.nuspec" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>0e1770d5-ff18-46c7-bd29-89dd6a048aab</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NuProjPath Condition=" '$(NuProjPath)' == '' ">$(MSBuildExtensionsPath)\NuProj\</NuProjPath>
+  </PropertyGroup>
+  <Import Project="$(NuProjPath)\NuProj.props" Condition="Exists('$(NuProjPath)\NuProj.props')" />
+  <PropertyGroup Label="Configuration">
+    <Id>ExceptionHandling.Extensions</Id>
+    <Version>0.1.0-alpha</Version>
+    <Title>ExceptionHandling.Extensions</Title>
+    <Authors>Alexandre Rocha Lima e Marcondes</Authors>
+    <Owners>arlm</Owners>
+    <Summary>ExceptionHandling.Extensions.NuGet</Summary>
+    <Description>ExceptionHandling.Extensions.NuGet</Description>
+    <ReleaseNotes>
+    </ReleaseNotes>
+    <ProjectUrl>https://github.com/arlm/Extensions</ProjectUrl>
+    <LicenseUrl>https://github.com/arlm/Extensions/blob/master/LICENSE.txt</LicenseUrl>
+    <Copyright>Copyright © Alexandre Rocha Lima e Marcondes</Copyright>
+    <Tags>exception try catch finally extension</Tags>
+    <RequireLicenseAcceptance />
+    <DevelopmentDependency />
+    <GenerateSymbolPackage />
+    <EmbedSourceFiles>true</EmbedSourceFiles>
+    <NoPackageAnalysis />
+    <NoDefaultExcludes />
+    <OutputPath>$(ProjectRoot)bin\$(Configuration)\Packages\</OutputPath>
+  </PropertyGroup>
+  <Import Project="$(NuProjPath)\NuProj.targets" />
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), EnlistmentInfo.targets))\EnlistmentInfo.targets" Condition=" '$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), EnlistmentInfo.targets))' != '' " />
+</Project>
