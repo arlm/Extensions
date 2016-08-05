@@ -1,15 +1,14 @@
-﻿// Copyright (c) to owners found in https://github.com/arlm/Extensions/blob/master/COPYRIGHT.md. All
-// rights reserved. Licensed under the MIT license. See LICENSE.txt file in the project root for full
-// license information.
-
-using System;
-using System.Diagnostics;
-using System.IO;
-using System.Runtime.CompilerServices;
-using ExceptionHandling.Extensions;
+﻿// Copyright (c) to owners found in https://github.com/arlm/Extensions/blob/master/COPYRIGHT.md. All rights reserved.
+// Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
 
 namespace Logging.Extensions
 {
+    using System;
+    using System.Diagnostics;
+    using System.IO;
+    using System.Runtime.CompilerServices;
+    using ExceptionHandling.Extensions;
+
     public static class Log
     {
         private const string LOG_FORMAT = "{0} [{1}@{2}:{3}]: {4}";

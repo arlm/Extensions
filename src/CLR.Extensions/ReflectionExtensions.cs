@@ -1,14 +1,13 @@
-﻿// Copyright (c) to owners found in https://github.com/arlm/Extensions/blob/master/COPYRIGHT.md. All
-// rights reserved. Licensed under the MIT license. See LICENSE.txt file in the project root for full
-// license information.
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+﻿// Copyright (c) to owners found in https://github.com/arlm/Extensions/blob/master/COPYRIGHT.md. All rights reserved.
+// Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
 
 namespace CLR.Extensions
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+
     public static class ReflectionExtensions
     {
         public static T GetAttribute<T>(this Assembly assembly)

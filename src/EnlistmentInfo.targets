@@ -14,5 +14,4 @@
   </ItemGroup>
 
   <Import Project="NuProj.Extra.targets" Condition=" '$(MSBuildProjectExtension)' == '.nuproj' "/>
-  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), Extensions.Extra.targets))\Extensions.Extra.targets" Condition=" !$(MSBuildProjectName.Contains('Test')) AND $(TargetPath) != '' and '$(MSBuildProjectExtension)' != '.nuproj'"/>
 </Project>

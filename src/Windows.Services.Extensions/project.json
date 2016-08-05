@@ -1,21 +1,15 @@
 ﻿{
-  "supports": { },
   "dependencies": {
-    "Nerdbank.GitVersioning": {
-      "version": "1.4.41",
-      "suppressParent": "none"
-    },
+    "Nerdbank.GitVersioning": "1.4.41",
     "Nuproj": "0.10.48-beta-gea4a31bbc5",
-    "Nuproj.Common": {
-      "version": "0.10.48-beta-gea4a31bbc5",
-      "suppressParent": "none"
-    },
+    "Nuproj.Common": "0.10.48-beta-gea4a31bbc5",
     "StyleCop.Analyzers": "1.0.0"
   },
   "frameworks": {
-    ".NETFramework,Version=v4.0": { }
+    ".NETFramework,Version=v4.5.2": {}
   },
   "runtimes": {
-    "win": { }
-  }
+    "win": {}
+  },
+  "supports": {}
 }

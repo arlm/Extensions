@@ -1,12 +1,11 @@
-﻿// Copyright (c) to owners found in https://github.com/arlm/Extensions/blob/master/COPYRIGHT.md. All
-// rights reserved. Licensed under the MIT license. See LICENSE.txt file in the project root for full
-// license information.
-
-using System;
-using Microsoft.Win32;
+﻿// Copyright (c) to owners found in https://github.com/arlm/Extensions/blob/master/COPYRIGHT.md. All rights reserved.
+// Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
 
 namespace Windows.Core.Extensions
 {
+    using System;
+    using Microsoft.Win32;
+
     public static class WinReg
     {
         public static T GetValue<T>(this RegistryKey registryKey, string subKey, string valueName)
