@@ -29,7 +29,7 @@ if ($NothingToDo) {
     Write-Output "No actions specified. Applying default actions."
     $Restore = $true
     $Build = $true
-    $Test = $true    
+    $Test = $false    
 }
 
 # External dependencies
@@ -38,7 +38,7 @@ $sourceNugetExe = "https://dist.nuget.org/win-x86-commandline/v3.3.0/nuget.exe"
 # Path variables
 $ProjectRoot = Split-Path -parent $PSCommandPath
 $SolutionFolder = Join-Path $ProjectRoot src
-$SolutionFile = Join-Path $SolutionFolder "PInvoke.sln"
+$SolutionFile = Join-Path $SolutionFolder "Extensions.sln"
 $ToolsFolder = Join-Path $ProjectRoot tools
 $BinFolder = Join-Path $ProjectRoot "bin"
 $BinConfigFolder = Join-Path $BinFolder $Configuration
