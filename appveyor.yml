@@ -1,8 +1,9 @@
 version: 1.0.{build}
+os: Visual Studio 2015
+image: Visual Studio 2015
 branches:
   except:
   - develop/*
-skip_tags: true
 configuration: Release
 install:
 - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/install-nuget-3-3-0.ps1'))
