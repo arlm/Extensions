@@ -6,11 +6,11 @@ using System.Reflection;
 using System.Resources;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("CLR.Extensions")]
+[assembly: AssemblyTitle("Debugging.Extensions")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Alexandre Rocha Lima e Marcondes")]
-[assembly: AssemblyProduct("CLR.Extensions")]
+[assembly: AssemblyProduct("Debugging.Extensions")]
 [assembly: AssemblyCopyright("Copyright © 2016 Alexandre Rocha Lima e Marcondes")]
 [assembly: AssemblyTrademark("Alexandre Rocha Lima e Marcondes")]
 [assembly: AssemblyCulture("")]

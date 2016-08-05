@@ -6,11 +6,13 @@ using System.Reflection;
 using System.Resources;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("CLR.Extensions")]
+// General Information about an assembly is controlled through the following set of attributes.
+// Change these attribute values to modify the information associated with an assembly.
+[assembly: AssemblyTitle("WPF.Extensions")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Alexandre Rocha Lima e Marcondes")]
-[assembly: AssemblyProduct("CLR.Extensions")]
+[assembly: AssemblyProduct("WPF.Extensions")]
 [assembly: AssemblyCopyright("Copyright © 2016 Alexandre Rocha Lima e Marcondes")]
 [assembly: AssemblyTrademark("Alexandre Rocha Lima e Marcondes")]
 [assembly: AssemblyCulture("")]

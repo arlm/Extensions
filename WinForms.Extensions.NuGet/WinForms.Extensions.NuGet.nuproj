@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|AnyCPU">
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|AnyCPU">
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WinForms.Extensions\WinForms.Extensions.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="WinForms.Extensions.nuspec" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>7a55afcc-863a-4879-ae08-1a869db8d9d0</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NuProjPath Condition=" '$(NuProjPath)' == '' ">$(MSBuildExtensionsPath)\NuProj\</NuProjPath>
+  </PropertyGroup>
+  <Import Project="$(NuProjPath)\NuProj.props" Condition="Exists('$(NuProjPath)\NuProj.props')" />
+  <PropertyGroup Label="Configuration">
+    <Id>WinForms.Extensions</Id>
+    <Version>0.1.0-alpha</Version>
+    <Title>WinForms.Extensions</Title>
+    <Authors>Alexandre Rocha Lima e Marcondes</Authors>
+    <Owners>arlm</Owners>
+    <Summary>WinForms.Extensions.NuGet</Summary>
+    <Description>WinForms.Extensions.NuGet</Description>
+    <ReleaseNotes>
+    </ReleaseNotes>
+    <ProjectUrl>https://github.com/arlm/Extensions</ProjectUrl>
+    <LicenseUrl>https://github.com/arlm/Extensions/blob/master/LICENSE.txt</LicenseUrl>
+    <Copyright>Copyright © Alexandre Rocha Lima e Marcondes</Copyright>
+    <Tags>winforms extension</Tags>
+    <RequireLicenseAcceptance />
+    <DevelopmentDependency />
+    <GenerateSymbolPackage />
+    <EmbedSourceFiles>true</EmbedSourceFiles>
+    <NoPackageAnalysis />
+    <NoDefaultExcludes />
+    <OutputPath>$(ProjectRoot)bin\$(Configuration)\Packages\</OutputPath>
+  </PropertyGroup>
+  <Import Project="$(NuProjPath)\NuProj.targets" />
+</Project>
