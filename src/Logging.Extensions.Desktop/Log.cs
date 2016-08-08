@@ -71,7 +71,7 @@ namespace Logging.Extensions.Desktop
             var fileName = Path.GetFileName(sourceFilePath);
             if (IsRunningInUnitTest || !Debugger.IsAttached)
             {
-                System.Console.Out.WriteLine(LOG_FORMAT, DebugLevel.Debug.ToString(), memberName, fileName, sourceLineNumber, message);
+                Console.Out.WriteLine(LOG_FORMAT, DebugLevel.Debug.ToString(), memberName, fileName, sourceLineNumber, message);
             }
             else
             {
@@ -84,7 +84,7 @@ namespace Logging.Extensions.Desktop
             var fileName = Path.GetFileName(sourceFilePath);
             if (IsRunningInUnitTest || !Debugger.IsAttached)
             {
-                System.Console.Out.WriteLine(LOG_FORMAT, DebugLevel.Error.ToString(), memberName, fileName, sourceLineNumber, message);
+                Console.Out.WriteLine(LOG_FORMAT, DebugLevel.Error.ToString(), memberName, fileName, sourceLineNumber, message);
             }
             else
             {
@@ -96,7 +96,7 @@ namespace Logging.Extensions.Desktop
         {
             if (IsRunningInUnitTest || !Debugger.IsAttached)
             {
-                System.Console.Out.WriteLine(LOG_FORMAT, DebugLevel.Error.ToString(), memberName, ex.Flatten(), string.Empty, string.Empty);
+                Console.Out.WriteLine(LOG_FORMAT, DebugLevel.Error.ToString(), memberName, ex.Flatten(), string.Empty, string.Empty);
             }
             else
             {
@@ -110,7 +110,7 @@ namespace Logging.Extensions.Desktop
             var fileName = Path.GetFileName(sourceFilePath);
             if (IsRunningInUnitTest || !Debugger.IsAttached)
             {
-                System.Console.Out.WriteLine(LOG_FORMAT, DebugLevel.Information.ToString(), memberName, fileName, sourceLineNumber, message);
+                Console.Out.WriteLine(LOG_FORMAT, DebugLevel.Information.ToString(), memberName, fileName, sourceLineNumber, message);
             }
             else
             {
@@ -125,7 +125,7 @@ namespace Logging.Extensions.Desktop
             var fileName = Path.GetFileName(sourceFilePath);
             if (IsRunningInUnitTest || !Debugger.IsAttached)
             {
-                System.Console.Out.WriteLine(LOG_FORMAT, DebugLevel.Notification.ToString(), memberName, fileName, sourceLineNumber, message);
+                Console.Out.WriteLine(LOG_FORMAT, DebugLevel.Notification.ToString(), memberName, fileName, sourceLineNumber, message);
             }
             else
             {
@@ -155,7 +155,7 @@ namespace Logging.Extensions.Desktop
             var fileName = Path.GetFileName(sourceFilePath);
             if (IsRunningInUnitTest || !Debugger.IsAttached)
             {
-                System.Console.Out.WriteLine(LOG_FORMAT, DebugLevel.Warning.ToString(), memberName, fileName, sourceLineNumber, message);
+                Console.Out.WriteLine(LOG_FORMAT, DebugLevel.Warning.ToString(), memberName, fileName, sourceLineNumber, message);
             }
             else
             {

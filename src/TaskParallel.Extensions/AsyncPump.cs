@@ -43,7 +43,8 @@ namespace TaskParallel.Extensions
                     delegate
                     {
                         syncCtx.Complete();
-                    }, TaskScheduler.Default);
+                    }, 
+                    TaskScheduler.Default);
 
                 // Pump continuations and propagate any exceptions
                 syncCtx.RunOnCurrentThread();
