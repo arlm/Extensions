@@ -13,6 +13,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Logging.Extensions\Logging.Extensions.csproj" />
+    <ProjectReference Include="..\ExceptionHandling.Extensions.NuGet\ExceptionHandling.Extensions.NuGet.nuproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Logging.Extensions.nuspec" />

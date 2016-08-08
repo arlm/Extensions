@@ -13,6 +13,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TaskParallel.Extensions\TaskParallel.Extensions.csproj" />
+    <ProjectReference Include="..\Debugging.Extensions.NuGet\Debugging.Extensions.NuGet.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="TaskParallel.Extensions.nuspec" />
