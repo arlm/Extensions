@@ -24,7 +24,8 @@ namespace CLR.Extensions
                 throw new ArgumentNullException(nameof(assembly));
             }
 
-            var attributes = assembly.GetAttributes<T>();
+            
+            var attributes = assembly.GetCustomAttributes<T>();
 
             return attributes;
         }
