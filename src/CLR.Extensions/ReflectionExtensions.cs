@@ -13,7 +13,7 @@ namespace CLR.Extensions
         public static T GetAttribute<T>(this Assembly assembly)
             where T : Attribute
         {
-            return GetAttributes<T>(assembly).First();
+            return GetAttributes<T>(assembly).FirstOrDefault();
         }
 
         public static IEnumerable<T> GetAttributes<T>(this Assembly assembly)
