@@ -7,7 +7,7 @@
   <PropertyGroup>
     <ProjectRoot>$(MSBuildThisFileDirectory)..\</ProjectRoot>
     <SolutionDir>$(MSBuildThisFileDirectory)</SolutionDir>
-    <NuProjPath>$(UserProfile)\.nuget\packages\NuProj\0.10.48-beta-gea4a31bbc5\tools\</NuProjPath>
+    <NuProjPath>$(UserProfile)\.nuget\packages\NuProj\0.11.17-beta\tools\</NuProjPath>
     <NerdbankGitVersioningPath>$(UserProfile)\.nuget\packages\Nerdbank.GitVersioning\1.4.41\</NerdbankGitVersioningPath>
 
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>

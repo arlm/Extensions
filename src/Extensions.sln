@@ -27,6 +27,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logging.Extensions", "Loggi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{25D03934-1123-462F-A6A2-2424364DE5B6}"
 	ProjectSection(SolutionItems) = preProject
+		..\appveyor.yml = ..\appveyor.yml
 		COPYRIGHT.md = COPYRIGHT.md
 		Extensions.licenseheader = Extensions.licenseheader
 		Extensions.ruleset = Extensions.ruleset
