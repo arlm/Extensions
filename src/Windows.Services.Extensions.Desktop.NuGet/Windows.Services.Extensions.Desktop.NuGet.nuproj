@@ -11,26 +11,26 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Windows.Services.Extensions\Windows.Services.Extensions.csproj" />
+    <ProjectReference Include="..\Windows.Services.Extensions.Desktop\Windows.Services.Extensions.Desktop.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Windows.Services.Extensions.nuspec" />
+    <Content Include="Windows.Services.Extensions.Desktop.nuspec" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>145c4703-9b9b-4192-999a-35dbeaa6939a</ProjectGuid>
   </PropertyGroup>
   <PropertyGroup>
+    <NuSpecTemplate>Windows.Services.Extensions.Desktop.nuspec</NuSpecTemplate>
     <NuProjPath Condition=" '$(NuProjPath)' == '' ">$(MSBuildExtensionsPath)\NuProj\</NuProjPath>
   </PropertyGroup>
   <Import Project="$(NuProjPath)\NuProj.props" Condition="Exists('$(NuProjPath)\NuProj.props')" />
   <PropertyGroup Label="Configuration">
-    <Id>Windows.Services.Extensions</Id>
-    <Version>0.1.0-alpha</Version>
-    <Title>Windows.Services.Extensions</Title>
+    <Id>Windows.Services.Extensions.Desktop</Id>
+    <Title>Windows.Services.Extensions.Desktop</Title>
     <Authors>Alexandre Rocha Lima e Marcondes</Authors>
     <Owners>arlm</Owners>
-    <Summary>Windows.Services.Extensions.NuGet</Summary>
-    <Description>Windows.Services.Extensions.NuGet</Description>
+    <Summary>Windows.Services.Extensions.Desktop.NuGet</Summary>
+    <Description>Windows.Services.Extensions.Desktop.NuGet</Description>
     <ReleaseNotes>
     </ReleaseNotes>
     <ProjectUrl>https://github.com/arlm/Extensions</ProjectUrl>
