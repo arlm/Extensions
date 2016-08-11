@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), EnlistmentInfo.props))\EnlistmentInfo.props" Condition=" '$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), EnlistmentInfo.props))' != '' " />
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|AnyCPU">
@@ -12,26 +12,26 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Debugging.Extensions\Debugging.Extensions.csproj" />
+    <ProjectReference Include="..\Debugging.Extensions.Portable\Debugging.Extensions.Portable.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Debugging.Extensions.nuspec" />
+    <Content Include="Debugging.Extensions.Portable.nuspec" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>097d518a-3ada-473b-b34d-e5f76a5e90f0</ProjectGuid>
   </PropertyGroup>
   <PropertyGroup>
+    <NuSpecTemplate>Debugging.Extensions.Portable.nuspec</NuSpecTemplate>
     <NuProjPath Condition=" '$(NuProjPath)' == '' ">$(MSBuildExtensionsPath)\NuProj\</NuProjPath>
   </PropertyGroup>
   <Import Project="$(NuProjPath)\NuProj.props" Condition="Exists('$(NuProjPath)\NuProj.props')" />
   <PropertyGroup Label="Configuration">
-    <Id>Debugging.Extensions</Id>
-    <Version>0.1.0-alpha</Version>
-    <Title>Debugging.Extensions</Title>
+    <Id>Debugging.Extensions.Portable</Id>
+    <Title>Debugging.Extensions.Portable</Title>
     <Authors>Alexandre Rocha Lima e Marcondes</Authors>
     <Owners>arlm</Owners>
-    <Summary>Debugging.Extensions.NuGet</Summary>
-    <Description>Debugging.Extensions.NuGet</Description>
+    <Summary>Debugging.Extensions.Portable.NuGet</Summary>
+    <Description>Debugging.Extensions.Portable.NuGet</Description>
     <ReleaseNotes>
     </ReleaseNotes>
     <ProjectUrl>https://github.com/arlm/Extensions</ProjectUrl>
@@ -40,11 +40,11 @@
     <Tags>debug debugging extension</Tags>
     <RequireLicenseAcceptance />
     <DevelopmentDependency />
-    <OutputPath>$(ProjectRoot)bin\$(Configuration)\Packages\</OutputPath>
     <GenerateSymbolPackage />
     <EmbedSourceFiles>true</EmbedSourceFiles>
     <NoPackageAnalysis />
     <NoDefaultExcludes />
+    <OutputPath>$(ProjectRoot)bin\$(Configuration)\Packages\</OutputPath>
   </PropertyGroup>
   <Import Project="$(NuProjPath)\NuProj.targets" />
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), EnlistmentInfo.targets))\EnlistmentInfo.targets" Condition=" '$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), EnlistmentInfo.targets))' != '' " />
