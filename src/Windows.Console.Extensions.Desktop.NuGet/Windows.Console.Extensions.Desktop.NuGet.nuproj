@@ -12,26 +12,26 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Windows.Console.Extensions\Windows.Console.Extensions.csproj" />
+    <ProjectReference Include="..\Windows.Console.Extensions\Windows.Console.Extensions.Desktop.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Windows.Console.Extensions.nuspec" />
+    <Content Include="Windows.Console.Extensions.Desktop.nuspec" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>4d07504e-a6b5-4120-a705-553b0d992755</ProjectGuid>
   </PropertyGroup>
   <PropertyGroup>
+    <NuSpecTemplate>Windows.Console.Extensions.Desktop.nuspec</NuSpecTemplate>
     <NuProjPath Condition=" '$(NuProjPath)' == '' ">$(MSBuildExtensionsPath)\NuProj\</NuProjPath>
   </PropertyGroup>
   <Import Project="$(NuProjPath)\NuProj.props" Condition="Exists('$(NuProjPath)\NuProj.props')" />
   <PropertyGroup Label="Configuration">
-    <Id>Windows.Console.Extensions</Id>
-    <Version>0.1.0-alpha</Version>
-    <Title>Windows.Console.Extensions</Title>
-    <Authors>Copyright © Alexandre Rocha Lima e Marcondes</Authors>
+    <Id>Windows.Console.Extensions.Desktop</Id>
+    <Title>Windows.Console.Extensions.Desktop</Title>
+    <Authors>Alexandre Rocha Lima e Marcondes</Authors>
     <Owners>arlm</Owners>
-    <Summary>Windows.Console.Extensions.NuGet</Summary>
-    <Description>Windows.Console.Extensions.NuGet</Description>
+    <Summary>Windows.Console.Extensions.Desktop.NuGet</Summary>
+    <Description>Windows.Console.Extensions.Desktop.NuGet</Description>
     <ReleaseNotes>
     </ReleaseNotes>
     <ProjectUrl>https://github.com/arlm/Extensions</ProjectUrl>
