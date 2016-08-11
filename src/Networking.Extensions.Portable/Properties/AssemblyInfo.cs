@@ -5,10 +5,11 @@ using System.Reflection;
 using System.Resources;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Networking.Extensions")]
+[assembly: AssemblyTitle("Networking.Extensions.Portable")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Alexandre Rocha Lima e Marcondes")]
+[assembly: AssemblyProduct("Networking.Extensions")]
 [assembly: AssemblyCopyright("Copyright © 2016 Alexandre Rocha Lima e Marcondes")]
 [assembly: AssemblyTrademark("Alexandre Rocha Lima e Marcondes")]
 [assembly: AssemblyCulture("")]
