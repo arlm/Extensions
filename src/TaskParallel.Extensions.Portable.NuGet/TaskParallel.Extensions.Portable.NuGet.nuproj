@@ -13,7 +13,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TaskParallel.Extensions.Portable\TaskParallel.Extensions.Portable.csproj" />
-    <ProjectReference Include="..\Debugging.Extensions.Portable.NuGet\Debugging.Extensions.Portable.NuGet.csproj" />
+    <ProjectReference Include="..\Debugging.Extensions.Portable.NuGet\Debugging.Extensions.Portable.NuGet.nuproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="TaskParallel.Extensions.Portable.nuspec" />

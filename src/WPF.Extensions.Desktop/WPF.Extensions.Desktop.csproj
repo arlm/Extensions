@@ -55,19 +55,19 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="Sandbox, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\WinApi.HighDpi.0.1.17-g56e7abdb76\lib\net452\Sandbox.dll</HintPath>
+      <HintPath>..\..\packages\WinApi.HighDpi.0.1.18-g00d9cb32a0\lib\net452\Sandbox.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Drawing" />
-    <Reference Include="WinApi.Core">
-      <HintPath>..\..\packages\WinApi.Core.0.1.17-g56e7abdb76\lib\net452\WinApi.Core.dll</HintPath>
+    <Reference Include="WinApi.Core, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\WinApi.Core.0.1.18-g00d9cb32a0\lib\net452\WinApi.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="WinApi.HighDpi, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\WinApi.HighDpi.0.1.17-g56e7abdb76\lib\net452\WinApi.HighDpi.dll</HintPath>
+      <HintPath>..\..\packages\WinApi.HighDpi.0.1.18-g00d9cb32a0\lib\net452\WinApi.HighDpi.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="WindowsBase" />

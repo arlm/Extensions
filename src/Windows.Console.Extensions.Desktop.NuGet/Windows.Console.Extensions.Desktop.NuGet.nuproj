@@ -12,7 +12,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Windows.Console.Extensions\Windows.Console.Extensions.Desktop.csproj" />
+    <ProjectReference Include="..\Windows.Console.Extensions.Desktop\Windows.Console.Extensions.Desktop.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Windows.Console.Extensions.Desktop.nuspec" />
