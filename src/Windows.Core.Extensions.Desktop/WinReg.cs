@@ -67,5 +67,37 @@ namespace Windows.Core.Extensions
 
             return SetValue(registryKey, subKeys, keys[keys.Length - 1], value);
         }
+
+        public static string TryGetRegKeyValue(RegistryKey root, string keyname)
+        {
+            using (var key = root.OpenSubKey(keyname))
+            {
+                if (key != null)
+                {
+                    var value = key.GetValue(string.Empty);
+
+                    if (value == null)
+                    {
+                        return null;
+                    }
+
+                    var stringValue = value as string;
+
+                    if (!string.IsNullOrEmpty(stringValue))
+                    {
+                        return stringValue.Substring(0, stringValue.Length - 4);
+                    }
+
+                    var dwordValue = value as int?;
+
+                    if (dwordValue.HasValue)
+                    {
+                        return dwordValue.ToString();
+                    }
+                }
+
+                return null;
+            }
+        }
     }
 }

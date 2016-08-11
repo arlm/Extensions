@@ -12,27 +12,27 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Windows.Core.Extensions\Windows.Core.Extensions.csproj" />
-    <ProjectReference Include="..\Debugging.Extensions.NuGet\Debugging.Extensions.NuGet.nuproj" />
+    <ProjectReference Include="..\Windows.Core.Extensions.Desktop\Windows.Core.Extensions.Desktop.csproj" />
+    <ProjectReference Include="..\Debugging.Extensions.Portable.NuGet\Debugging.Extensions.Portable.NuGet.nuproj" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Windows.Core.Extensions.nuspec" />
+    <Content Include="Windows.Core.Extensions.Desktop.nuspec" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>2459669c-3368-4ae6-9561-bc81f358ae4a</ProjectGuid>
   </PropertyGroup>
   <PropertyGroup>
+    <NuSpecTemplate>Windows.Core.Extensions.Desktop.nuspec</NuSpecTemplate>
     <NuProjPath Condition=" '$(NuProjPath)' == '' ">$(MSBuildExtensionsPath)\NuProj\</NuProjPath>
   </PropertyGroup>
   <Import Project="$(NuProjPath)\NuProj.props" Condition="Exists('$(NuProjPath)\NuProj.props')" />
   <PropertyGroup Label="Configuration">
-    <Id>Windows.Core.Extensions</Id>
-    <Version>0.1.0-alpha</Version>
-    <Title>Windows.Core.Extensions</Title>
+    <Id>Windows.Core.Extensions.Desktop</Id>
+    <Title>Windows.Core.Extensions.Desktop</Title>
     <Authors>Alexandre Rocha Lima e Marcondes</Authors>
     <Owners>arlm</Owners>
-    <Summary>Windows.Core.Extensions.NuGet</Summary>
-    <Description>Windows.Core.Extensions.NuGet</Description>
+    <Summary>Windows.Core.Extensions.Desktop.NuGet</Summary>
+    <Description>Windows.Core.Extensions.Desktop.NuGet</Description>
     <ReleaseNotes>
     </ReleaseNotes>
     <ProjectUrl>https://github.com/arlm/Extensions</ProjectUrl>
