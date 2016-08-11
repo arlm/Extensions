@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), EnlistmentInfo.props))\EnlistmentInfo.props" Condition=" '$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), EnlistmentInfo.props))' != '' " />  
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|AnyCPU">
@@ -12,26 +12,26 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ExceptionHandling.Extensions\ExceptionHandling.Extensions.csproj" />
+    <ProjectReference Include="..\ExceptionHandling.Extensions.Portable\ExceptionHandling.Extensions.Portable.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ExceptionHandling.Extensions.nuspec" />
+    <Content Include="ExceptionHandling.Extensions.Portable.nuspec" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>0e1770d5-ff18-46c7-bd29-89dd6a048aab</ProjectGuid>
   </PropertyGroup>
   <PropertyGroup>
+    <NuSpecTemplate>ExceptionHandling.Extensions.Portable.nuspec</NuSpecTemplate>
     <NuProjPath Condition=" '$(NuProjPath)' == '' ">$(MSBuildExtensionsPath)\NuProj\</NuProjPath>
   </PropertyGroup>
   <Import Project="$(NuProjPath)\NuProj.props" Condition="Exists('$(NuProjPath)\NuProj.props')" />
   <PropertyGroup Label="Configuration">
-    <Id>ExceptionHandling.Extensions</Id>
-    <Version>0.1.0-alpha</Version>
-    <Title>ExceptionHandling.Extensions</Title>
+    <Id>ExceptionHandling.Extensions.Portable</Id>
+    <Title>ExceptionHandling.Extensions.Portable</Title>
     <Authors>Alexandre Rocha Lima e Marcondes</Authors>
     <Owners>arlm</Owners>
-    <Summary>ExceptionHandling.Extensions.NuGet</Summary>
-    <Description>ExceptionHandling.Extensions.NuGet</Description>
+    <Summary>ExceptionHandling.Extensions.Portable.NuGet</Summary>
+    <Description>ExceptionHandling.Extensions.Portable.NuGet</Description>
     <ReleaseNotes>
     </ReleaseNotes>
     <ProjectUrl>https://github.com/arlm/Extensions</ProjectUrl>
