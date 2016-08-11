@@ -9,8 +9,8 @@
     <ProjectGuid>{570033A2-5168-43A6-8E71-357E2FCF36F2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TaskParallel.Extensions</RootNamespace>
-    <AssemblyName>TaskParallel.Extensions</AssemblyName>
+    <RootNamespace>TaskParallel.Extensions.Portable</RootNamespace>
+    <AssemblyName>TaskParallel.Extensions.Portable</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -27,8 +27,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>..\..\..\WinApi\src\WinApi.ruleset</CodeAnalysisRuleSet>
-    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\Extensions.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,12 +36,13 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\Extensions.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
-    <ProjectReference Include="..\Debugging.Extensions\Debugging.Extensions.csproj">
+    <ProjectReference Include="..\Debugging.Extensions.Portable\Debugging.Extensions.Portable.csproj">
       <Project>{213d77db-31b0-495a-acfb-eadc4e5e7835}</Project>
-      <Name>Debugging.Extensions</Name>
+      <Name>Debugging.Extensions.Portable</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

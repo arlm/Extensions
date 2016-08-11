@@ -12,27 +12,27 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TaskParallel.Extensions\TaskParallel.Extensions.csproj" />
-    <ProjectReference Include="..\Debugging.Extensions.NuGet\Debugging.Extensions.NuGet.csproj" />
+    <ProjectReference Include="..\TaskParallel.Extensions.Portable\TaskParallel.Extensions.Portable.csproj" />
+    <ProjectReference Include="..\Debugging.Extensions.Portable.NuGet\Debugging.Extensions.Portable.NuGet.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TaskParallel.Extensions.nuspec" />
+    <Content Include="TaskParallel.Extensions.Portable.nuspec" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>8587f95f-a9a2-4a1c-998e-0351864f1cad</ProjectGuid>
   </PropertyGroup>
   <PropertyGroup>
+    <NuSpecTemplate>TaskParallel.Extensions.Portable.nuspec</NuSpecTemplate>
     <NuProjPath Condition=" '$(NuProjPath)' == '' ">$(MSBuildExtensionsPath)\NuProj\</NuProjPath>
   </PropertyGroup>
   <Import Project="$(NuProjPath)\NuProj.props" Condition="Exists('$(NuProjPath)\NuProj.props')" />
   <PropertyGroup Label="Configuration">
-    <Id>TaskParallel.Extensions</Id>
-    <Version>0.1.0-alpha</Version>
-    <Title>TaskParallel.Extensions</Title>
+    <Id>TaskParallel.Extensions.Portable</Id>
+    <Title>TaskParallel.Extensions.Portable</Title>
     <Authors>Alexandre Rocha Lima e Marcondes</Authors>
     <Owners>arlm</Owners>
-    <Summary>TaskParallel.Extensions.NuGet</Summary>
-    <Description>TaskParallel.Extensions.NuGet</Description>
+    <Summary>TaskParallel.Extensions.Portable.NuGet</Summary>
+    <Description>TaskParallel.Extensions.Portable.NuGet</Description>
     <ReleaseNotes>
     </ReleaseNotes>
     <ProjectUrl>https://github.com/arlm/Extensions</ProjectUrl>
