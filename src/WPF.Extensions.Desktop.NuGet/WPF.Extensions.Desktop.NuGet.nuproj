@@ -12,26 +12,26 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WPF.Extensions\WPF.Extensions.csproj" />
+    <ProjectReference Include="..\WPF.Extensions.Desktop\WPF.Extensions.Desktop.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="WPF.Extensions.nuspec" />
+    <Content Include="WPF.Extensions.Desktop.nuspec" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>3ff75a09-56c6-415a-8f36-eeb06670c666</ProjectGuid>
   </PropertyGroup>
   <PropertyGroup>
+    <NuSpecTemplate>WPF.Extensions.Desktop.nuspec</NuSpecTemplate>
     <NuProjPath Condition=" '$(NuProjPath)' == '' ">$(MSBuildExtensionsPath)\NuProj\</NuProjPath>
   </PropertyGroup>
   <Import Project="$(NuProjPath)\NuProj.props" Condition="Exists('$(NuProjPath)\NuProj.props')" />
   <PropertyGroup Label="Configuration">
-    <Id>WPF.Extensions</Id>
-    <Version>0.1.0-alpha</Version>
-    <Title>WPF.Extensions</Title>
+    <Id>WPF.Extensions.Desktop</Id>
+    <Title>WPF.Extensions.Desktop</Title>
     <Authors>Alexandre Rocha Lima e Marcondes</Authors>
     <Owners>arlm</Owners>
-    <Summary>WPF.Extensions.NuGet</Summary>
-    <Description>WPF.Extensions.NuGet</Description>
+    <Summary>WPF.Extensions.Desktop.NuGet</Summary>
+    <Description>WPF.Extensions.Desktop.NuGet</Description>
     <ReleaseNotes>
     </ReleaseNotes>
     <ProjectUrl>https://github.com/arlm/Extensions</ProjectUrl>
