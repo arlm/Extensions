@@ -12,26 +12,26 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WinForms.Extensions\WinForms.Extensions.csproj" />
+    <ProjectReference Include="..\WinForms.Extensions.Desktop\WinForms.Extensions.Desktop.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="WinForms.Extensions.nuspec" />
+    <Content Include="WinForms.Extensions.Desktop.nuspec" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>7a55afcc-863a-4879-ae08-1a869db8d9d0</ProjectGuid>
   </PropertyGroup>
   <PropertyGroup>
+    <NuSpecTemplate>WinForms.Extensions.Desktop.nuspec</NuSpecTemplate>
     <NuProjPath Condition=" '$(NuProjPath)' == '' ">$(MSBuildExtensionsPath)\NuProj\</NuProjPath>
   </PropertyGroup>
   <Import Project="$(NuProjPath)\NuProj.props" Condition="Exists('$(NuProjPath)\NuProj.props')" />
   <PropertyGroup Label="Configuration">
-    <Id>WinForms.Extensions</Id>
-    <Version>0.1.0-alpha</Version>
-    <Title>WinForms.Extensions</Title>
+    <Id>WinForms.Extensions.Desktop</Id>
+    <Title>WinForms.Extensions.Desktop</Title>
     <Authors>Alexandre Rocha Lima e Marcondes</Authors>
     <Owners>arlm</Owners>
-    <Summary>WinForms.Extensions.NuGet</Summary>
-    <Description>WinForms.Extensions.NuGet</Description>
+    <Summary>WinForms.Extensions.Desktop.NuGet</Summary>
+    <Description>WinForms.Extensions.Desktop.NuGet</Description>
     <ReleaseNotes>
     </ReleaseNotes>
     <ProjectUrl>https://github.com/arlm/Extensions</ProjectUrl>
