@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Resources;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Logging.Extensions")]
+[assembly: AssemblyTitle("Logging.Extensions.Portable")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Alexandre Rocha Lima e Marcondes")]

@@ -9,8 +9,8 @@
     <ProjectGuid>{1E025E8C-A4A6-449A-B4D9-B07E6F198775}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Logging.Extensions</RootNamespace>
-    <AssemblyName>Logging.Extensions</AssemblyName>
+    <RootNamespace>Logging.Extensions.Portable</RootNamespace>
+    <AssemblyName>Logging.Extensions.Portable</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -27,8 +27,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>..\..\..\WinApi\src\WinApi.ruleset</CodeAnalysisRuleSet>
-    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\Extensions.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,12 +36,13 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\Extensions.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
-    <ProjectReference Include="..\ExceptionHandling.Extensions\ExceptionHandling.Extensions.csproj">
+    <ProjectReference Include="..\ExceptionHandling.Extensions.Portable\ExceptionHandling.Extensions.Portable.csproj">
       <Project>{c1c94726-0e8d-4960-9a51-f639b470685f}</Project>
-      <Name>ExceptionHandling.Extensions</Name>
+      <Name>ExceptionHandling.Extensions.Portable</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

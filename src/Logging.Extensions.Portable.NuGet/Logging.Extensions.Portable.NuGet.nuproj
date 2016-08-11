@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), EnlistmentInfo.props))\EnlistmentInfo.props" Condition=" '$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), EnlistmentInfo.props))' != '' " />
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|AnyCPU">
@@ -12,27 +12,27 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Logging.Extensions\Logging.Extensions.csproj" />
-    <ProjectReference Include="..\ExceptionHandling.Extensions.NuGet\ExceptionHandling.Extensions.NuGet.nuproj" />
+    <ProjectReference Include="..\Logging.Extensions.Portable\Logging.Extensions.Portable.csproj" />
+    <ProjectReference Include="..\ExceptionHandling.Extensions.Portable.NuGet\ExceptionHandling.Extensions.Portable.NuGet.nuproj" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Logging.Extensions.nuspec" />
+    <Content Include="Logging.Extensions.Portable.nuspec" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>a945f1a3-6e6c-4415-a80b-951e7a0017f7</ProjectGuid>
   </PropertyGroup>
   <PropertyGroup>
+    <NuSpecTemplate>Logging.Extensions.Portable.nuspec</NuSpecTemplate>
     <NuProjPath Condition=" '$(NuProjPath)' == '' ">$(MSBuildExtensionsPath)\NuProj\</NuProjPath>
   </PropertyGroup>
   <Import Project="$(NuProjPath)\NuProj.props" Condition="Exists('$(NuProjPath)\NuProj.props')" />
   <PropertyGroup Label="Configuration">
-    <Id>Logging.Extensions</Id>
-    <Version>0.1.0-alpha</Version>
-    <Title>Logging.Extensions</Title>
+    <Id>Logging.Extensions.Portable</Id>
+    <Title>Logging.Extensions.Portable</Title>
     <Authors>Alexandre Rocha Lima e Marcondes</Authors>
     <Owners>arlm</Owners>
-    <Summary>Logging.Extensions.NuGet</Summary>
-    <Description>Logging.Extensions.NuGet</Description>
+    <Summary>Logging.Extensions.Portable.NuGet</Summary>
+    <Description>Logging.Extensions.Portable.NuGet</Description>
     <ReleaseNotes>
     </ReleaseNotes>
     <ProjectUrl>https://github.com/arlm/Extensions</ProjectUrl>
