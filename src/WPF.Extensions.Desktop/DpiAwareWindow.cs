@@ -14,12 +14,13 @@ namespace WPF.Extensions.Desktop
 {
     public class DpiAwareWindow : Window
     {
+        private const double EPSILON = 0.0001;
+
         private bool IsPerMonitorEnabled;
         private HwndSource source;
         private Dpi systemDpi;
 
         public DpiAwareWindow()
-            : base()
         {
             // Set up the SourceInitialized event handler
             this.SourceInitialized += this.DpiAwareWindow_SourceInitialized;
@@ -42,17 +43,17 @@ namespace WPF.Extensions.Desktop
             this.UpdateLayoutTransform(this.ScaleFactor);
         }
 
-        public virtual IntPtr WindowProcedureHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        public virtual unsafe IntPtr WindowProcedureHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
         {
             // Determine which Monitor is displaying the Window
-            IntPtr monitor = Sandbox.User32.MonitorFromWindow(hwnd, Sandbox.MonitorOptions.MONITOR_DEFAULTTONEAREST);
+            var monitor = PInvoke.User32.MonitorFromWindow(hwnd, PInvoke.User32.MonitorOptions.MONITOR_DEFAULTTONEAREST);
 
             // Switch on the message.
             switch ((PInvoke.User32.WindowMessage)msg)
             {
                 case PInvoke.User32.WindowMessage.WM_DPICHANGED:
                     // Marshal the value in the lParam into a Rect.
-                    PInvoke.RECT newDisplayRect = (PInvoke.RECT)Marshal.PtrToStructure(lParam, typeof(PInvoke.RECT));
+                    var newDisplayRect = (PInvoke.RECT)Marshal.PtrToStructure(lParam, typeof(PInvoke.RECT));
 
                     // Set the Window's position & size.
                     var upperLeft = new Vector(newDisplayRect.left, newDisplayRect.top);
@@ -86,11 +87,11 @@ namespace WPF.Extensions.Desktop
 
                 case PInvoke.User32.WindowMessage.WM_GETMINMAXINFO:
                     // lParam has a pointer to the MINMAXINFO structure. Marshal it into managed memory.
-                    Sandbox.MINMAXINFO mmi = (Sandbox.MINMAXINFO)Marshal.PtrToStructure(lParam, typeof(Sandbox.MINMAXINFO));
+                    var mmi = (PInvoke.User32.MINMAXINFO)Marshal.PtrToStructure(lParam, typeof(PInvoke.User32.MINMAXINFO));
                     if (monitor != IntPtr.Zero)
                     {
-                        Sandbox.MONITORINFO monitorInfo = new Sandbox.MONITORINFO();
-                        Sandbox.User32.GetMonitorInfo(monitor, monitorInfo);
+                        var monitorInfo = new PInvoke.User32.MONITORINFO();
+                        PInvoke.User32.GetMonitorInfo(monitor, new IntPtr(&monitorInfo));
 
                         // Get the Monitor's working area
                         PInvoke.RECT rcWorkArea = monitorInfo.rcWork;
@@ -158,7 +159,8 @@ namespace WPF.Extensions.Desktop
         {
             if (this.IsPerMonitorEnabled)
             {
-                if (this.ScaleFactor.X != 1.0 || this.ScaleFactor.Y != 1.0)
+
+                if (Math.Abs(this.ScaleFactor.X - 1.0) > EPSILON || Math.Abs(this.ScaleFactor.Y - 1.0) > EPSILON)
                 {
                     this.LayoutTransform = new ScaleTransform(scaleFactor.X, scaleFactor.Y);
                 }
