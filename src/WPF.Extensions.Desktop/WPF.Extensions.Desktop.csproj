@@ -63,11 +63,11 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Drawing" />
     <Reference Include="WinApi.Core, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\WinApi.Core.0.1.20-gaa61ec4525\lib\net452\WinApi.Core.dll</HintPath>
+      <HintPath>..\..\packages\WinApi.Core.0.1.24-ga26f0b7176\lib\net452\WinApi.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="WinApi.HighDpi, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\WinApi.HighDpi.0.1.20-gaa61ec4525\lib\net452\WinApi.HighDpi.dll</HintPath>
+      <HintPath>..\..\packages\WinApi.HighDpi.0.1.24-ga26f0b7176\lib\net452\WinApi.HighDpi.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="WindowsBase" />
