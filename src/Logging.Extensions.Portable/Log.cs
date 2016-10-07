@@ -13,7 +13,7 @@ namespace Logging.Extensions
     {
         private const string LOG_FORMAT = "{0} [{1}@{2}:{3}]: {4}";
 
-        private enum DebugLevel : int
+        private enum DebugLevel
         {
             Emergency = 0,
             Alerts = 1,
@@ -25,13 +25,12 @@ namespace Logging.Extensions
             Debug = 7
         }
 
-        [Conditional("DEBUG")]
         public static void Debug(string message, [CallerLineNumber] int sourceLineNumber = -1, [CallerFilePath] string sourceFilePath = "", [CallerMemberName] string memberName = "")
         {
             var fileName = Path.GetFileName(sourceFilePath);
             if (Debugger.IsAttached)
             {
-                System.Diagnostics.Debug.WriteLine(LOG_FORMAT, DateTime.Now.ToString("HH:mm:ss.ffff"), string.Empty, fileName, sourceLineNumber, message);
+                System.Diagnostics.Debug.WriteLine(LOG_FORMAT, DateTime.Now.ToString("HH:mm:ss.ffff"), memberName, fileName, sourceLineNumber, message);
             }
         }
 
@@ -40,41 +39,36 @@ namespace Logging.Extensions
             var fileName = Path.GetFileName(sourceFilePath);
             if (Debugger.IsAttached)
             {
-                System.Diagnostics.Debug.WriteLine(LOG_FORMAT, DateTime.Now.ToString("HH:mm:ss.ffff"), string.Empty, fileName, sourceLineNumber, message);
+                System.Diagnostics.Debug.WriteLine(LOG_FORMAT, DateTime.Now.ToString("HH:mm:ss.ffff"), memberName, fileName, sourceLineNumber, message);
             }
         }
 
-        public static void Error(Exception ex, [CallerMemberName] string memberName = "")
+        public static void Error(Exception ex, [CallerLineNumber] int sourceLineNumber = -1, [CallerFilePath] string sourceFilePath = "", [CallerMemberName] string memberName = "")
         {
             if (Debugger.IsAttached)
             {
-                System.Diagnostics.Debug.WriteLine("Error: {0}", ex.Flatten());
+                System.Diagnostics.Debug.WriteLine("Error on {0}@{1}:{2}: {3}", memberName, sourceFilePath, sourceLineNumber, ex.Flatten());
             }
         }
 
-        [Conditional("DEBUG")]
         public static void Info(string message, [CallerLineNumber] int sourceLineNumber = -1, [CallerFilePath] string sourceFilePath = "", [CallerMemberName] string memberName = "")
         {
             var fileName = Path.GetFileName(sourceFilePath);
             if (Debugger.IsAttached)
             {
-                System.Diagnostics.Debug.WriteLine(LOG_FORMAT, DateTime.Now.ToString("HH:mm:ss.ffff"), string.Empty, fileName, sourceLineNumber, message);
+                System.Diagnostics.Debug.WriteLine(LOG_FORMAT, DateTime.Now.ToString("HH:mm:ss.ffff"), memberName, fileName, sourceLineNumber, message);
             }
         }
 
-        [Conditional("DEBUG")]
-        [Conditional("TRACE")]
         public static void Notification(string message, [CallerLineNumber] int sourceLineNumber = -1, [CallerFilePath] string sourceFilePath = "", [CallerMemberName] string memberName = "")
         {
             var fileName = Path.GetFileName(sourceFilePath);
             if (Debugger.IsAttached)
             {
-                System.Diagnostics.Debug.WriteLine(LOG_FORMAT, DateTime.Now.ToString("HH:mm:ss.ffff"), string.Empty, fileName, sourceLineNumber, message);
+                System.Diagnostics.Debug.WriteLine(LOG_FORMAT, DateTime.Now.ToString("HH:mm:ss.ffff"), memberName, fileName, sourceLineNumber, message);
             }
         }
 
-        [Conditional("DEBUG")]
-        [Conditional("TRACE")]
         public static void Trace(this Exception ex)
         {
             if (Debugger.IsAttached)
@@ -84,14 +78,12 @@ namespace Logging.Extensions
             }
         }
 
-        [Conditional("DEBUG")]
-        [Conditional("TRACE")]
         public static void Warning(string message, [CallerLineNumber] int sourceLineNumber = -1, [CallerFilePath] string sourceFilePath = "", [CallerMemberName] string memberName = "")
         {
             var fileName = Path.GetFileName(sourceFilePath);
             if (Debugger.IsAttached)
             {
-                System.Diagnostics.Debug.WriteLine(LOG_FORMAT, DateTime.Now.ToString("HH:mm:ss.ffff"), string.Empty, fileName, sourceLineNumber, message);
+                System.Diagnostics.Debug.WriteLine(LOG_FORMAT, DateTime.Now.ToString("HH:mm:ss.ffff"), memberName, fileName, sourceLineNumber, message);
             }
         }
     }

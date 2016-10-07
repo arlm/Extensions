@@ -8,73 +8,93 @@ namespace Windows.Core.Extensions
 
     public static class WinReg
     {
-        public static T GetValue<T>(this RegistryKey registryKey, string subKey, string valueName)
+        public static T GetValue<T>(this RegistryKey registryKey, string key, string valueName)
         {
-            try
+            if (registryKey == null)
+                throw new ArgumentNullException(nameof(registryKey));
+
+            if (string.IsNullOrWhiteSpace(key))
+                throw new ArgumentNullException(nameof(key));
+
+            if (valueName == null)
+                throw new ArgumentNullException(nameof(valueName));
+
+            using (var subKey = registryKey.OpenSubKey(key))
             {
-                using (var key = registryKey.OpenSubKey(subKey))
+                if (subKey == null)
                 {
-                    if (key == null)
-                    {
-                        return default(T);
-                    }
-
-                    return (T)registryKey.GetValue(valueName, default(T));
+                    return default(T);
                 }
-            }
-            catch (Exception)
-            {
-            }
 
-            return default(T);
+                return (T)registryKey.GetValue(valueName, default(T));
+            }
         }
 
-        public static T GetValue<T>(this RegistryKey registryKey, string subKeyWithValueName)
+        public static T GetValue<T>(this RegistryKey registryKey, string key)
         {
-            var keys = subKeyWithValueName.Split('\\');
+            if (registryKey == null)
+                throw new ArgumentNullException(nameof(registryKey));
+
+            if (string.IsNullOrWhiteSpace(key))
+                throw new ArgumentNullException(nameof(key));
+
+            var keys = key.Split('\\');
             var subKeys = string.Join("\\", keys, 0, keys.Length - 1);
 
             return GetValue<T>(registryKey, subKeys, keys[keys.Length - 1]);
         }
 
-        public static bool SetValue<T>(this RegistryKey registryKey, string subKey, string valueName, T value)
+        public static bool SetValue<T>(this RegistryKey registryKey, string key, string valueName, T value)
         {
-            try
+            if (registryKey == null)
+                throw new ArgumentNullException(nameof(registryKey));
+
+            if (string.IsNullOrWhiteSpace(key))
+                throw new ArgumentNullException(nameof(key));
+
+            if (valueName == null)
+                throw new ArgumentNullException(nameof(valueName));
+
+            using (var subKey = registryKey.OpenSubKey(key))
             {
-                using (var key = registryKey.OpenSubKey(subKey))
+                if (subKey == null)
                 {
-                    if (key == null)
-                    {
-                        return false;
-                    }
-
-                    registryKey.SetValue(valueName, value);
-                    registryKey.Flush();
-                    return true;
+                    return false;
                 }
-            }
-            catch (Exception)
-            {
-            }
 
-            return false;
+                registryKey.SetValue(valueName, value);
+                registryKey.Flush();
+                return true;
+            }
         }
 
-        public static bool SetValue<T>(this RegistryKey registryKey, string subKeyWithValueName, T value)
+        public static bool SetValue<T>(this RegistryKey registryKey, string key, T value)
         {
-            var keys = subKeyWithValueName.Split('\\');
+            if (registryKey == null)
+                throw new ArgumentNullException(nameof(registryKey));
+
+            if (string.IsNullOrWhiteSpace(key))
+                throw new ArgumentNullException(nameof(key));
+
+            var keys = key.Split('\\');
             var subKeys = string.Join("\\", keys, 0, keys.Length - 1);
 
             return SetValue(registryKey, subKeys, keys[keys.Length - 1], value);
         }
 
-        public static string TryGetRegKeyValue(RegistryKey root, string keyname)
+        public static string TryGetRegKeyValue(this RegistryKey registryKey, string key)
         {
-            using (var key = root.OpenSubKey(keyname))
+            if (registryKey == null)
+                throw new ArgumentNullException(nameof(registryKey));
+
+            if (string.IsNullOrWhiteSpace(key))
+                throw new ArgumentNullException(nameof(key));
+
+            using (var subKey = registryKey.OpenSubKey(key))
             {
-                if (key != null)
+                if (subKey != null)
                 {
-                    var value = key.GetValue(string.Empty);
+                    var value = subKey.GetValue(string.Empty);
 
                     if (value == null)
                     {

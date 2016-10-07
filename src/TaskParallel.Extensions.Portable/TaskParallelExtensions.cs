@@ -10,7 +10,10 @@ namespace TaskParallel.Extensions
     {
         public static Task Then(this Task parent, Task next)
         {
-            TaskCompletionSource<object> tcs = new TaskCompletionSource<object>();
+            if (parent == null)
+                throw new System.ArgumentNullException(nameof(parent));
+
+            var tcs = new TaskCompletionSource<object>();
 
             parent.ContinueWith(task =>
             {

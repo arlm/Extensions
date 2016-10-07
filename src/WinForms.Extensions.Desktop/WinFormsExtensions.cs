@@ -10,6 +10,9 @@ namespace WinForms.Extensions
     {
         public static void EnterFullScreenMode(this Form form)
         {
+            if (form == null)
+                throw new System.ArgumentNullException(nameof(form));
+
             form.WindowState = FormWindowState.Normal;
             form.FormBorderStyle = FormBorderStyle.None;
             form.WindowState = FormWindowState.Maximized;
@@ -18,6 +21,9 @@ namespace WinForms.Extensions
 
         public static void InvokeIfRequired(this ISynchronizeInvoke obj, MethodInvoker action)
         {
+            if (obj == null)
+                throw new System.ArgumentNullException(nameof(obj));
+
             if (obj.InvokeRequired)
             {
                 var args = new object[0];
@@ -25,12 +31,15 @@ namespace WinForms.Extensions
             }
             else
             {
-                action();
+                action?.Invoke();
             }
         }
 
         public static bool IsScreenInLandscapeOrientation(this Form form)
         {
+            if (form == null)
+                throw new System.ArgumentNullException(nameof(form));
+
             int theScreenRectHeight = Screen.PrimaryScreen.Bounds.Height;
             int theScreenRectWidth = Screen.PrimaryScreen.Bounds.Width;
 
@@ -40,6 +49,9 @@ namespace WinForms.Extensions
 
         public static bool IsScreenInPortraitOrientation(this Form form)
         {
+            if (form == null)
+                throw new System.ArgumentNullException(nameof(form));
+
             int theScreenRectHeight = Screen.PrimaryScreen.Bounds.Height;
             int theScreenRectWidth = Screen.PrimaryScreen.Bounds.Width;
 
@@ -49,6 +61,9 @@ namespace WinForms.Extensions
 
         public static void LeaveFullScreenMode(this Form form)
         {
+            if (form == null)
+                throw new System.ArgumentNullException(nameof(form));
+
             form.FormBorderStyle = FormBorderStyle.Sizable;
             form.WindowState = FormWindowState.Normal;
         }

@@ -30,7 +30,7 @@ namespace CLR.Extensions
             return attributes;
         }
 
-        public static string GetMetaData(this Assembly assembly, string key)
+        public static string GetMetadata(this Assembly assembly, string key)
         {
             if (string.IsNullOrWhiteSpace(key))
             {

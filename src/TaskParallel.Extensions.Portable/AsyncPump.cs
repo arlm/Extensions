@@ -22,33 +22,39 @@ namespace TaskParallel.Extensions
         {
             if (func == null)
             {
-                throw new ArgumentNullException("func");
+                throw new ArgumentNullException(nameof(func));
             }
 
             var prevCtx = SynchronizationContext.Current;
             try
             {
-                // Establish the new context
-                var syncCtx = new SingleThreadSynchronizationContext();
-                SynchronizationContext.SetSynchronizationContext(syncCtx);
 
                 // Invoke the function and alert the context to when it completes
-                var t = func();
-                if (t == null)
+                Task t = null;
+
+                // Establish the new context
+                using (var syncCtx = new SingleThreadSynchronizationContext())
                 {
-                    throw new InvalidOperationException("No task provided.");
+                    SynchronizationContext.SetSynchronizationContext(syncCtx);
+                    t = func();
+
+                    if (t == null)
+                    {
+                        throw new InvalidOperationException("No task provided.");
+                    }
+
+                    t.ContinueWith(
+                        delegate
+                        {
+                            syncCtx.Complete();
+                        },
+                        TaskScheduler.Default);
+
+                    // Pump continuations and propagate any exceptions
+                    syncCtx.RunOnCurrentThread();
                 }
 
-                t.ContinueWith(
-                    delegate
-                    {
-                        syncCtx.Complete();
-                    }, 
-                    TaskScheduler.Default);
-
-                // Pump continuations and propagate any exceptions
-                syncCtx.RunOnCurrentThread();
-                t.GetAwaiter().GetResult();
+                t?.GetAwaiter().GetResult();
             }
             finally
             {
@@ -59,7 +65,7 @@ namespace TaskParallel.Extensions
         /// <summary>
         /// Provides a SynchronizationContext that's single-threaded.
         /// </summary>
-        private sealed class SingleThreadSynchronizationContext : SynchronizationContext
+        private sealed class SingleThreadSynchronizationContext : SynchronizationContext, IDisposable
         {
             /// <summary>
             /// The queue of work items.
@@ -81,6 +87,11 @@ namespace TaskParallel.Extensions
                 this.queue.CompleteAdding();
             }
 
+            public void Dispose()
+            {
+                this.queue.Dispose();
+            }
+
             /// <summary>
             /// Dispatches an asynchronous message to the synchronization context.
             /// </summary>
@@ -90,7 +101,7 @@ namespace TaskParallel.Extensions
             {
                 if (d == null)
                 {
-                    throw new ArgumentNullException("d");
+                    throw new ArgumentNullException(nameof(d));
                 }
 
                 this.queue.Add(new KeyValuePair<SendOrPostCallback, object>(d, state));

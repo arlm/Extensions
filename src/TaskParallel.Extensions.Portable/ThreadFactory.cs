@@ -10,11 +10,9 @@ namespace TaskParallel.Extensions
     {
         public static readonly ThreadFactory Instance = new ThreadFactory();
 
-        public delegate void TaskError(Task task, Exception error);
+        public event EventHandler<UnobservedTaskExceptionEventArgs> Error;
 
-        public event TaskError Error;
-
-        public void InvokeError(Task task, Exception error)
+        public void InvokeError(Task task, UnobservedTaskExceptionEventArgs error)
         {
             this.Error?.Invoke(task, error);
         }
@@ -34,7 +32,11 @@ namespace TaskParallel.Extensions
         private void Start(Task task)
         {
             task.ContinueWith(
-                t => this.InvokeError(t, t.Exception.InnerException),
+                t => {
+                    var aggregateException = new AggregateException(t.Exception);
+                    var unobservedTaskExceptionEventArgs = new UnobservedTaskExceptionEventArgs(aggregateException);
+                    this.InvokeError(t, unobservedTaskExceptionEventArgs);
+                    },
                 TaskContinuationOptions.OnlyOnFaulted | TaskContinuationOptions.ExecuteSynchronously);
             task.Start();
         }

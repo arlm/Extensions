@@ -12,7 +12,7 @@ namespace Windows.Core.Extensions
         {
             get
             {
-                int p = (int)Environment.OSVersion.Platform;
+                var p = (int)Environment.OSVersion.Platform;
 
                 return (p == 4) || (p == 6) || (p == 128);
             }
@@ -20,6 +20,9 @@ namespace Windows.Core.Extensions
 
         public static Process Parent(this Process process)
         {
+            if (process == null)
+                throw new ArgumentNullException(nameof(process));
+
             return FindPidFromIndexedProcessName(FindIndexedProcessName(process.Id));
         }
 
@@ -32,10 +35,12 @@ namespace Windows.Core.Extensions
             for (var index = 0; index < processesByName.Length; index++)
             {
                 processIndexdName = index == 0 ? processName : processName + "#" + index;
-                var processId = new PerformanceCounter("Process", "ID Process", processIndexdName);
-                if ((int)processId.NextValue() == pid)
+                using (var processId = new PerformanceCounter("Process", "ID Process", processIndexdName))
                 {
-                    return processIndexdName;
+                    if ((int)processId.NextValue() == pid)
+                    {
+                        return processIndexdName;
+                    }
                 }
             }
 
@@ -44,11 +49,16 @@ namespace Windows.Core.Extensions
 
         private static Process FindPidFromIndexedProcessName(string indexedProcessName)
         {
-            var parentId = new PerformanceCounter("Process", "Creating Process ID", indexedProcessName);
+            Process result;
 
-            var processId = (int)parentId.NextValue();
+            using (var parentId = new PerformanceCounter("Process", "Creating Process ID", indexedProcessName))
+            {
+                var processId = (int)parentId.NextValue();
 
-            return processId == 0 ? null : Process.GetProcessById(processId);
+                result = processId == 0 ? null : Process.GetProcessById(processId);
+            }
+
+            return result;
         }
     }
 }

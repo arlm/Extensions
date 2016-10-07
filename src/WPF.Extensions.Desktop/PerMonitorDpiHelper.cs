@@ -43,18 +43,21 @@ namespace WPF.Extensions.Desktop
         /// <param name="window">Target window.</param>
         public PerMonitorDpiHelper(Window window)
         {
+            if (window == null)
+                throw new ArgumentNullException(nameof(window));
+
             this.window = window;
             this.window.Loaded += this.Window_Loaded;
         }
 
         public static bool GetIsEnabled(DependencyObject dp)
         {
-            return (bool)dp.GetValue(IsEnabledProperty);
+            return (bool?)dp?.GetValue(IsEnabledProperty) ?? false;
         }
 
         public static void SetIsEnabled(DependencyObject dp, bool value)
         {
-            dp.SetValue(IsEnabledProperty, value);
+            dp?.SetValue(IsEnabledProperty, value);
         }
 
         public void RemoveHook()

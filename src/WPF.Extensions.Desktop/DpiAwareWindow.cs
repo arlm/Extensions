@@ -18,7 +18,6 @@ namespace WPF.Extensions.Desktop
 
         private bool IsPerMonitorEnabled;
         private HwndSource source;
-        private Dpi systemDpi;
 
         public DpiAwareWindow()
         {
@@ -29,6 +28,8 @@ namespace WPF.Extensions.Desktop
         public Dpi CurrentDpi { get; private set; }
 
         public Point ScaleFactor { get; private set; }
+
+        public Dpi SystemDpi { get; private set; }
 
         protected Point WpfDpi { get; set; }
 
@@ -43,6 +44,7 @@ namespace WPF.Extensions.Desktop
             this.UpdateLayoutTransform(this.ScaleFactor);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1045:DoNotPassTypesByReference", MessageId = "4#", Justification = "System.Windows.Interop.HwndSourceHook needs this pattern")]
         public virtual unsafe IntPtr WindowProcedureHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
         {
             // Determine which Monitor is displaying the Window
@@ -127,7 +129,7 @@ namespace WPF.Extensions.Desktop
             if (this.IsPerMonitorEnabled)
             {
                 // It is. Calculate the DPI used by the System.
-                this.systemDpi = DpiAwareApi.SystemDPI;
+                this.SystemDpi = DpiAwareApi.SystemDPI;
 
                 // Calculate the DPI used by WPF.
                 this.WpfDpi = new Point
