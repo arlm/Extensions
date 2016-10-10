@@ -6,18 +6,35 @@ namespace Windows.Core.Extensions
     using System;
     using Microsoft.Win32;
 
+    /// <summary>
+    /// Windows registry helpers
+    /// </summary>
     public static class WinReg
     {
+        /// <summary>
+        /// Returns a value from a registry key
+        /// </summary>
+        /// <typeparam name="T">The value type</typeparam>
+        /// <param name="registryKey">The registry root key</param>
+        /// <param name="key">The key to return the value</param>
+        /// <param name="valueName">The name of the value to be returned</param>
+        /// <returns>The key value casted to the appropriate type</returns>
         public static T GetValue<T>(this RegistryKey registryKey, string key, string valueName)
         {
             if (registryKey == null)
+            {
                 throw new ArgumentNullException(nameof(registryKey));
+            }
 
             if (string.IsNullOrWhiteSpace(key))
+            {
                 throw new ArgumentNullException(nameof(key));
+            }
 
             if (valueName == null)
+            {
                 throw new ArgumentNullException(nameof(valueName));
+            }
 
             using (var subKey = registryKey.OpenSubKey(key))
             {
@@ -30,13 +47,24 @@ namespace Windows.Core.Extensions
             }
         }
 
+        /// <summary>
+        /// Returns a value from a registry key
+        /// </summary>
+        /// <typeparam name="T">The value type</typeparam>
+        /// <param name="registryKey">The registry root key</param>
+        /// <param name="key">The key with the value name to look for</param>
+        /// <returns>The key value casted to the appropriate type</returns>
         public static T GetValue<T>(this RegistryKey registryKey, string key)
         {
             if (registryKey == null)
+            {
                 throw new ArgumentNullException(nameof(registryKey));
+            }
 
             if (string.IsNullOrWhiteSpace(key))
+            {
                 throw new ArgumentNullException(nameof(key));
+            }
 
             var keys = key.Split('\\');
             var subKeys = string.Join("\\", keys, 0, keys.Length - 1);
@@ -44,16 +72,31 @@ namespace Windows.Core.Extensions
             return GetValue<T>(registryKey, subKeys, keys[keys.Length - 1]);
         }
 
+        /// <summary>
+        /// Sets a value in a registry key
+        /// </summary>
+        /// <typeparam name="T">The value type</typeparam>
+        /// <param name="registryKey">The registry root key</param>
+        /// <param name="key">The key to set the value</param>
+        /// <param name="valueName">The name of the value to be set</param>
+        /// <param name="value">The value to be placed on the registry key</param>
+        /// <returns>True if the value could be set, false otherwise</returns>
         public static bool SetValue<T>(this RegistryKey registryKey, string key, string valueName, T value)
         {
             if (registryKey == null)
+            {
                 throw new ArgumentNullException(nameof(registryKey));
+            }
 
             if (string.IsNullOrWhiteSpace(key))
+            {
                 throw new ArgumentNullException(nameof(key));
+            }
 
             if (valueName == null)
+            {
                 throw new ArgumentNullException(nameof(valueName));
+            }
 
             using (var subKey = registryKey.OpenSubKey(key))
             {
@@ -68,13 +111,25 @@ namespace Windows.Core.Extensions
             }
         }
 
+        /// <summary>
+        /// Sets a value in a registry key
+        /// </summary>
+        /// <typeparam name="T">The value type</typeparam>
+        /// <param name="registryKey">The registry root key</param>
+        /// <param name="key">The key with the value name to set the value</param>
+        /// <param name="value">The value to be placed on the registry key</param>
+        /// <returns>True if the value could be set, false otherwise</returns>
         public static bool SetValue<T>(this RegistryKey registryKey, string key, T value)
         {
             if (registryKey == null)
+            {
                 throw new ArgumentNullException(nameof(registryKey));
+            }
 
             if (string.IsNullOrWhiteSpace(key))
+            {
                 throw new ArgumentNullException(nameof(key));
+            }
 
             var keys = key.Split('\\');
             var subKeys = string.Join("\\", keys, 0, keys.Length - 1);
@@ -82,13 +137,23 @@ namespace Windows.Core.Extensions
             return SetValue(registryKey, subKeys, keys[keys.Length - 1], value);
         }
 
+        /// <summary>
+        /// Returns a string value from a registry key
+        /// </summary>
+        /// <param name="registryKey">The registry root key</param>
+        /// <param name="key">The key with the value name to look for</param>
+        /// <returns>The string key value or null if it not found</returns>
         public static string TryGetRegKeyValue(this RegistryKey registryKey, string key)
         {
             if (registryKey == null)
+            {
                 throw new ArgumentNullException(nameof(registryKey));
+            }
 
             if (string.IsNullOrWhiteSpace(key))
+            {
                 throw new ArgumentNullException(nameof(key));
+            }
 
             using (var subKey = registryKey.OpenSubKey(key))
             {

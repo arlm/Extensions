@@ -16,7 +16,9 @@ namespace WPF.Extensions.Desktop
     /// </summary>
     public class PerMonitorDpiHelper
     {
-        // Attached property implementation
+        /// <summary>
+        /// Attached property implementation
+        /// </summary>
         public static readonly DependencyProperty IsEnabledProperty =
             DependencyProperty.RegisterAttached("IsEnabled", typeof(bool), typeof(PerMonitorDpiHelper), new PropertyMetadata(false, SetEnabled));
 
@@ -44,22 +46,37 @@ namespace WPF.Extensions.Desktop
         public PerMonitorDpiHelper(Window window)
         {
             if (window == null)
+            {
                 throw new ArgumentNullException(nameof(window));
+            }
 
             this.window = window;
             this.window.Loaded += this.Window_Loaded;
         }
 
+        /// <summary>
+        /// Gets the attached property value
+        /// </summary>
+        /// <param name="dp">Object reference</param>
+        /// <returns>True if the property is set to enabled, false otherwise</returns>
         public static bool GetIsEnabled(DependencyObject dp)
         {
             return (bool?)dp?.GetValue(IsEnabledProperty) ?? false;
         }
 
+        /// <summary>
+        /// Sets the attached property value
+        /// </summary>
+        /// <param name="dp">Object reference</param>
+        /// <param name="value">True if the property is set to enabled, false otherwise</param>
         public static void SetIsEnabled(DependencyObject dp, bool value)
         {
             dp?.SetValue(IsEnabledProperty, value);
         }
 
+        /// <summary>
+        /// Removes the window message processing procedure hook
+        /// </summary>
         public void RemoveHook()
         {
             if (this.hwndSource != null)

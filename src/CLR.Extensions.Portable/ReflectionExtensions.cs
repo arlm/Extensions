@@ -8,14 +8,29 @@ namespace CLR.Extensions
     using System.Linq;
     using System.Reflection;
 
+    /// <summary>
+    /// Helper functions to aid on Reflection
+    /// </summary>
     public static class ReflectionExtensions
     {
+        /// <summary>
+        /// Gets the first occurence of the specified assembly attribute
+        /// </summary>
+        /// <typeparam name="T">The attribute type to look for</typeparam>
+        /// <param name="assembly">The assembly to inspect for attributes</param>
+        /// <returns></returns>
         public static T GetAttribute<T>(this Assembly assembly)
             where T : Attribute
         {
             return GetAttributes<T>(assembly).FirstOrDefault();
         }
 
+        /// <summary>
+        /// Gets all occurences of the specified assembly attribute
+        /// </summary>
+        /// <typeparam name="T">The attribute type to look for</typeparam>
+        /// <param name="assembly">The assembly to inspect for attributes</param>
+        /// <returns></returns>
         public static IEnumerable<T> GetAttributes<T>(this Assembly assembly)
             where T : Attribute
         {
@@ -23,13 +38,18 @@ namespace CLR.Extensions
             {
                 throw new ArgumentNullException(nameof(assembly));
             }
-
-            
+           
             var attributes = assembly.GetCustomAttributes<T>();
 
             return attributes;
         }
 
+        /// <summary>
+        /// Gets a specified meta-data value from an assembly
+        /// </summary>
+        /// <param name="assembly">The assembly to inspect for meta-data</param>
+        /// <param name="key">Meta-data key</param>
+        /// <returns>Meta-data value</returns>
         public static string GetMetadata(this Assembly assembly, string key)
         {
             if (string.IsNullOrWhiteSpace(key))

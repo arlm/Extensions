@@ -12,27 +12,48 @@ using Point = System.Drawing.Point;
 
 namespace WPF.Extensions.Desktop
 {
+    /// <summary>
+    /// WPF Window base class that is DPI-aware
+    /// </summary>
     public class DpiAwareWindow : Window
     {
         private const double EPSILON = 0.0001;
 
-        private bool IsPerMonitorEnabled;
+        private bool isPerMonitorEnabled;
         private HwndSource source;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DpiAwareWindow"/> class.
+        /// </summary>
         public DpiAwareWindow()
         {
             // Set up the SourceInitialized event handler
             this.SourceInitialized += this.DpiAwareWindow_SourceInitialized;
         }
 
+        /// <summary>
+        /// Gets the current DPI value for this window
+        /// </summary>
         public Dpi CurrentDpi { get; private set; }
 
+        /// <summary>
+        /// Gets the current scale-factor for this window
+        /// </summary>
         public Point ScaleFactor { get; private set; }
 
+        /// <summary>
+        /// Gets the System DPI value
+        /// </summary>
         public Dpi SystemDpi { get; private set; }
 
+        /// <summary>
+        /// Gets or sets the current DPI value for WPF infrastructure
+        /// </summary>
         protected Point WpfDpi { get; set; }
 
+        /// <summary>
+        /// Notifies the window that the DPI changed
+        /// </summary>
         public void OnDPIChanged()
         {
             this.ScaleFactor = new Point
@@ -44,8 +65,17 @@ namespace WPF.Extensions.Desktop
             this.UpdateLayoutTransform(this.ScaleFactor);
         }
 
+        /// <summary>
+        /// Window message handler procedure that processes the DPI related messages
+        /// </summary>
+        /// <param name="hwnd">Window handle</param>
+        /// <param name="msg">Window message code</param>
+        /// <param name="wParam">First message parameter</param>
+        /// <param name="lParam">Second message parameter</param>
+        /// <param name="handled">Notifies if the message was handled or not</param>
+        /// <returns>Always returns <see cref="IntPtr.Zero"/> to let WPF to process all the messages</returns>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1045:DoNotPassTypesByReference", MessageId = "4#", Justification = "System.Windows.Interop.HwndSourceHook needs this pattern")]
-        public virtual unsafe IntPtr WindowProcedureHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        public virtual IntPtr WindowProcedureHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
         {
             // Determine which Monitor is displaying the Window
             var monitor = PInvoke.User32.MonitorFromWindow(hwnd, PInvoke.User32.MonitorOptions.MONITOR_DEFAULTTONEAREST);
@@ -92,12 +122,30 @@ namespace WPF.Extensions.Desktop
                     var mmi = (PInvoke.User32.MINMAXINFO)Marshal.PtrToStructure(lParam, typeof(PInvoke.User32.MINMAXINFO));
                     if (monitor != IntPtr.Zero)
                     {
-                        var monitorInfo = new PInvoke.User32.MONITORINFO();
-                        PInvoke.User32.GetMonitorInfo(monitor, new IntPtr(&monitorInfo));
+                        var monitorInfo = IntPtr.Zero;
+                        var rcWorkArea = new PInvoke.RECT();
+                        var rcMonitorArea = new PInvoke.RECT();
 
-                        // Get the Monitor's working area
-                        PInvoke.RECT rcWorkArea = monitorInfo.rcWork;
-                        PInvoke.RECT rcMonitorArea = monitorInfo.rcMonitor;
+                        try
+                        {
+                            monitorInfo = Marshal.AllocHGlobal(Marshal.SizeOf<PInvoke.User32.MONITORINFO>());
+
+                            if (PInvoke.User32.GetMonitorInfo(monitor, monitorInfo))
+                            {
+                                var temp = Marshal.PtrToStructure<PInvoke.User32.MONITORINFO>(monitorInfo);
+
+                                // Get the Monitor's working area
+                                rcWorkArea = temp.rcWork;
+                                rcMonitorArea = temp.rcMonitor;
+                            }
+                        }
+                        finally
+                        {
+                            if (monitorInfo != IntPtr.Zero)
+                            {
+                                Marshal.FreeHGlobal(monitorInfo);
+                            }
+                        }
 
                         // Adjust the maximized size and position to fit the work area of the current monitor
                         mmi.ptMaxPosition.x = Math.Abs(rcWorkArea.left - rcMonitorArea.left);
@@ -123,10 +171,10 @@ namespace WPF.Extensions.Desktop
             this.source.AddHook(this.WindowProcedureHook);
 
             // Determine if this application is Per Monitor DPI Aware.
-            this.IsPerMonitorEnabled = DpiAwareApi.GetProcessDpiAwareness() == PInvoke.PROCESS_DPI_AWARENESS.PROCESS_PER_MONITOR_DPI_AWARE;
+            this.isPerMonitorEnabled = DpiAwareApi.GetProcessDpiAwareness() == PInvoke.PROCESS_DPI_AWARENESS.PROCESS_PER_MONITOR_DPI_AWARE;
 
             // Is the window in per-monitor DPI mode?
-            if (this.IsPerMonitorEnabled)
+            if (this.isPerMonitorEnabled)
             {
                 // It is. Calculate the DPI used by the System.
                 this.SystemDpi = DpiAwareApi.SystemDPI;
@@ -159,9 +207,8 @@ namespace WPF.Extensions.Desktop
 
         private void UpdateLayoutTransform(Point scaleFactor)
         {
-            if (this.IsPerMonitorEnabled)
+            if (this.isPerMonitorEnabled)
             {
-
                 if (Math.Abs(this.ScaleFactor.X - 1.0) > EPSILON || Math.Abs(this.ScaleFactor.Y - 1.0) > EPSILON)
                 {
                     this.LayoutTransform = new ScaleTransform(scaleFactor.X, scaleFactor.Y);

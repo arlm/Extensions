@@ -3,6 +3,9 @@
 
 namespace Windows.Console.Extensions
 {
+    /// <summary>
+    /// Windows console helpers
+    /// </summary>
     public static class ConsoleExtensions
     {
     }

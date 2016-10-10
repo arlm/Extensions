@@ -6,8 +6,14 @@ namespace Windows.Core.Extensions
     using System;
     using System.Diagnostics;
 
+    /// <summary>
+    /// Process helpers
+    /// </summary>
     public static class Processes
     {
+        /// <summary>
+        /// Checks if the OS is an Unix platform
+        /// </summary>
         public static bool IsRunningOnUnix
         {
             get
@@ -18,10 +24,17 @@ namespace Windows.Core.Extensions
             }
         }
 
+        /// <summary>
+        /// Gets the process parent
+        /// </summary>
+        /// <param name="process">Process get the parent from</param>
+        /// <returns>The process parent or null if it is a top-level process</returns>
         public static Process Parent(this Process process)
         {
             if (process == null)
+            {
                 throw new ArgumentNullException(nameof(process));
+            }
 
             return FindPidFromIndexedProcessName(FindIndexedProcessName(process.Id));
         }

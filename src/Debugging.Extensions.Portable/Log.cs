@@ -6,10 +6,15 @@ namespace Debugging.Extensions
     using System;
     using System.Diagnostics;
 
+    /// <summary>
+    /// Debugging helpers
+    /// </summary>
     public static class Log
     {
-        [Conditional("DEBUG")]
-        [Conditional("TRACE")]
+        /// <summary>
+        /// Logs the exception and breaks if there is a debugger attached
+        /// </summary>
+        /// <param name="ex">The exception to be loggged</param>
         public static void Trace(this Exception ex)
         {
             if (Debugger.IsAttached)

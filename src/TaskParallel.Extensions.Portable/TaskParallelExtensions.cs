@@ -6,12 +6,23 @@ namespace TaskParallel.Extensions
     using System.Threading.Tasks;
     using Debugging.Extensions;
 
+    /// <summary>
+    /// Parallel task helpers
+    /// </summary>
     public static class TaskParallelExtensions
     {
+        /// <summary>
+        /// Runs tasks sequencially, one task after the other has finished.
+        /// </summary>
+        /// <param name="parent">The task to wait for execution</param>
+        /// <param name="next">The task to be run sequencially</param>
+        /// <returns></returns>
         public static Task Then(this Task parent, Task next)
         {
             if (parent == null)
+            {
                 throw new System.ArgumentNullException(nameof(parent));
+            }
 
             var tcs = new TaskCompletionSource<object>();
 

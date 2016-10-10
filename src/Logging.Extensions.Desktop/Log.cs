@@ -11,8 +11,14 @@ namespace Logging.Extensions.Desktop
     using System.Runtime.CompilerServices;
     using ExceptionHandling.Extensions;
 
+    /// <summary>
+    /// Logging helpers
+    /// </summary>
    public static class Log
     {
+        /// <summary>
+        /// Checks if the thread is running unit tests on NUnit or Visual Studio Test Tools
+        /// </summary>
         public static readonly bool IsRunningInUnitTest;
 
         private const string LOG_FORMAT = "{0} [{1}@{2}:{3}]: {4}";
@@ -20,7 +26,7 @@ namespace Logging.Extensions.Desktop
         private static readonly HashSet<string> UnitTestAttributes = new HashSet<string>
         {
             "Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute",
-            "NUnit.Framework.TestFixtureAttribute",
+            "NUnit.Framework.TestFixtureAttribute"
         };
 
         static Log()
@@ -37,7 +43,7 @@ namespace Logging.Extensions.Desktop
             }
         }
 
-        private enum DebugLevel : int
+        private enum DebugLevel
         {
             Emergency = 0,
             Alerts = 1,
@@ -49,7 +55,14 @@ namespace Logging.Extensions.Desktop
             Debug = 7
         }
 
-        [Conditional("DEBUG")]
+        /// <summary>
+        /// Logs the caller of the method that in which it is contained, with an adjusted stack-trace.
+        /// </summary>
+        /// <param name="message">Message to be logged with the caller reference</param>
+        /// <param name="sourceLineNumber">The line number of the method call. This parameter is automatically set by the runtime, which will be overwritten by the value you set here.</param>
+        /// <param name="sourceFilePath">The source file containing the method call. This parameter is automatically set by the runtime, which will be overwritten by the value you set here.</param>
+        /// <param name="memberName">The member name calling the method. This parameter is automatically set by the runtime, which will be overwritten by the value you set here.</param>
+        /// <remarks>Note that lambdas, closures and anonymous methods/delegates have class and method names that are automatically generated</remarks>
         public static void Caller(string message, [CallerLineNumber] int sourceLineNumber = -1, [CallerFilePath] string sourceFilePath = "", [CallerMemberName] string memberName = "")
         {
             var stacktrace = new StackTrace(true);
@@ -65,7 +78,14 @@ namespace Logging.Extensions.Desktop
             Info(message, sourceLineNumber, sourceFilePath, memberName);
         }
 
-        [Conditional("DEBUG")]
+        /// <summary>
+        /// Logs a debug message with information from the caller of the method that in which it is contained
+        /// </summary>
+        /// <param name="message">Message to be logged with the caller reference</param>
+        /// <param name="sourceLineNumber">The line number of the method call. This parameter is automatically set by the runtime, which will be overwritten by the value you set here.</param>
+        /// <param name="sourceFilePath">The source file containing the method call. This parameter is automatically set by the runtime, which will be overwritten by the value you set here.</param>
+        /// <param name="memberName">The member name calling the method. This parameter is automatically set by the runtime, which will be overwritten by the value you set here.</param>
+        /// <remarks>Note that lambdas, closures and anonymous methods/delegates have class and method names that are automatically generated</remarks>
         public static void Debug(string message, [CallerLineNumber] int sourceLineNumber = -1, [CallerFilePath] string sourceFilePath = "", [CallerMemberName] string memberName = "")
         {
             var fileName = Path.GetFileName(sourceFilePath);
@@ -79,6 +99,14 @@ namespace Logging.Extensions.Desktop
             }
         }
 
+        /// <summary>
+        /// Logs an error message with information from the caller of the method that in which it is contained
+        /// </summary>
+        /// <param name="message">Message to be logged with the caller reference</param>
+        /// <param name="sourceLineNumber">The line number of the method call. This parameter is automatically set by the runtime, which will be overwritten by the value you set here.</param>
+        /// <param name="sourceFilePath">The source file containing the method call. This parameter is automatically set by the runtime, which will be overwritten by the value you set here.</param>
+        /// <param name="memberName">The member name calling the method. This parameter is automatically set by the runtime, which will be overwritten by the value you set here.</param>
+        /// <remarks>Note that lambdas, closures and anonymous methods/delegates have class and method names that are automatically generated</remarks>
         public static void Error(string message, [CallerLineNumber] int sourceLineNumber = -1, [CallerFilePath] string sourceFilePath = "", [CallerMemberName] string memberName = "")
         {
             var fileName = Path.GetFileName(sourceFilePath);
@@ -92,6 +120,12 @@ namespace Logging.Extensions.Desktop
             }
         }
 
+        /// <summary>
+        /// Logs an exception with information from the caller of the method that in which it is contained
+        /// </summary>
+        /// <param name="ex">The exception to be logged</param>
+        /// <param name="memberName">The member name calling the method. This parameter is automatically set by the runtime, which will be overwritten by the value you set here.</param>
+        /// <remarks>Note that lambdas, closures and anonymous methods/delegates have class and method names that are automatically generated</remarks>
         public static void Error(Exception ex, [CallerMemberName] string memberName = "")
         {
             if (IsRunningInUnitTest || !Debugger.IsAttached)
@@ -104,7 +138,14 @@ namespace Logging.Extensions.Desktop
             }
         }
 
-        [Conditional("DEBUG")]
+        /// <summary>
+        /// Logs an information message with information from the caller of the method that in which it is contained
+        /// </summary>
+        /// <param name="message">Message to be logged with the caller reference</param>
+        /// <param name="sourceLineNumber">The line number of the method call. This parameter is automatically set by the runtime, which will be overwritten by the value you set here.</param>
+        /// <param name="sourceFilePath">The source file containing the method call. This parameter is automatically set by the runtime, which will be overwritten by the value you set here.</param>
+        /// <param name="memberName">The member name calling the method. This parameter is automatically set by the runtime, which will be overwritten by the value you set here.</param>
+        /// <remarks>Note that lambdas, closures and anonymous methods/delegates have class and method names that are automatically generated</remarks>
         public static void Info(string message, [CallerLineNumber] int sourceLineNumber = -1, [CallerFilePath] string sourceFilePath = "", [CallerMemberName] string memberName = "")
         {
             var fileName = Path.GetFileName(sourceFilePath);
@@ -118,8 +159,14 @@ namespace Logging.Extensions.Desktop
             }
         }
 
-        [Conditional("DEBUG")]
-        [Conditional("TRACE")]
+        /// <summary>
+        /// Logs a notification message with information from the caller of the method that in which it is contained
+        /// </summary>
+        /// <param name="message">Message to be logged with the caller reference</param>
+        /// <param name="sourceLineNumber">The line number of the method call. This parameter is automatically set by the runtime, which will be overwritten by the value you set here.</param>
+        /// <param name="sourceFilePath">The source file containing the method call. This parameter is automatically set by the runtime, which will be overwritten by the value you set here.</param>
+        /// <param name="memberName">The member name calling the method. This parameter is automatically set by the runtime, which will be overwritten by the value you set here.</param>
+        /// <remarks>Note that lambdas, closures and anonymous methods/delegates have class and method names that are automatically generated</remarks>
         public static void Notification(string message, [CallerLineNumber] int sourceLineNumber = -1, [CallerFilePath] string sourceFilePath = "", [CallerMemberName] string memberName = "")
         {
             var fileName = Path.GetFileName(sourceFilePath);
@@ -133,8 +180,10 @@ namespace Logging.Extensions.Desktop
             }
         }
 
-        [Conditional("DEBUG")]
-        [Conditional("TRACE")]
+        /// <summary>
+        /// Logs the exception and breaks if there is a debugger attached
+        /// </summary>
+        /// <param name="ex">The exception to be loggged</param>
         public static void Trace(this Exception ex)
         {
             if (Debugger.IsAttached)
@@ -148,8 +197,14 @@ namespace Logging.Extensions.Desktop
             }
         }
 
-        [Conditional("DEBUG")]
-        [Conditional("TRACE")]
+        /// <summary>
+        /// Logs a warning message with information from the caller of the method that in which it is contained
+        /// </summary>
+        /// <param name="message">Message to be logged with the caller reference</param>
+        /// <param name="sourceLineNumber">The line number of the method call. This parameter is automatically set by the runtime, which will be overwritten by the value you set here.</param>
+        /// <param name="sourceFilePath">The source file containing the method call. This parameter is automatically set by the runtime, which will be overwritten by the value you set here.</param>
+        /// <param name="memberName">The member name calling the method. This parameter is automatically set by the runtime, which will be overwritten by the value you set here.</param>
+        /// <remarks>Note that lambdas, closures and anonymous methods/delegates have class and method names that are automatically generated</remarks>
         public static void Warning(string message, [CallerLineNumber] int sourceLineNumber = -1, [CallerFilePath] string sourceFilePath = "", [CallerMemberName] string memberName = "")
         {
             var fileName = Path.GetFileName(sourceFilePath);

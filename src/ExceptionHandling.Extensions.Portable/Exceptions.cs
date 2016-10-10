@@ -6,10 +6,21 @@ namespace ExceptionHandling.Extensions
     using System;
     using System.Text;
 
+    /// <summary>
+    /// Exception handling and logging helpers
+    /// </summary>
     public static class Exceptions
     {
+        /// <summary>
+        /// A separator to be included on exception logs
+        /// </summary>
         public const string EXCEPTION_SEPARATOR = "----------------------------------------";
 
+        /// <summary>
+        /// Flattens an exception, returning all inner exceptions and related stack-traces
+        /// </summary>
+        /// <param name="exception">Exception to be flattened</param>
+        /// <returns>A dump of the exception and inner-exceptions, with stack-traces</returns>
         public static string Flatten(this Exception exception)
         {
             var stringBuilder = new StringBuilder();
@@ -26,6 +37,11 @@ namespace ExceptionHandling.Extensions
             return stringBuilder.ToString();
         }
 
+        /// <summary>
+        /// Flattens an aggregated exception, returning all inner exceptions and related stack-traces
+        /// </summary>
+        /// <param name="exception">Exception to be flattened</param>
+        /// <returns>A dump of the aggregated exception and inner-exceptions, base exception and aggregated inner-exceptions with stack-traces</returns>
         public static string ToFlattenedString(this AggregateException exception)
         {
             var stringBuilder = new StringBuilder();

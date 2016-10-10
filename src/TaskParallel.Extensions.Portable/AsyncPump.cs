@@ -26,9 +26,9 @@ namespace TaskParallel.Extensions
             }
 
             var prevCtx = SynchronizationContext.Current;
+
             try
             {
-
                 // Invoke the function and alert the context to when it completes
                 Task t = null;
 

@@ -6,23 +6,46 @@ namespace TaskParallel.Extensions
     using System;
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class ThreadFactory
     {
+        /// <summary>
+        /// The thread factory singleton instance
+        /// </summary>
         public static readonly ThreadFactory Instance = new ThreadFactory();
 
-        public event EventHandler<UnobservedTaskExceptionEventArgs> Error;
+        /// <summary>
+        /// Event to handle task errors and exceptions
+        /// </summary>
+        public event EventHandler<UnobservedTaskExceptionEventArgs> OnError;
 
+        /// <summary>
+        /// Invokes the <see cref="OnError"/> event
+        /// </summary>
+        /// <param name="task">The task that had errors</param>
+        /// <param name="error">The error information to send to the <see cref="OnError"/> handler</param>
         public void InvokeError(Task task, UnobservedTaskExceptionEventArgs error)
         {
-            this.Error?.Invoke(task, error);
+            this.OnError?.Invoke(task, error);
         }
 
+        /// <summary>
+        /// Starts a new task
+        /// </summary>
+        /// <param name="action">The action to be executed on the task</param>
         public void Start(Action action)
         {
             var task = new Task(action);
             this.Start(task);
         }
 
+        /// <summary>
+        /// Starts a new task
+        /// </summary>
+        /// <param name="action">The action to be executed on the task</param>
+        /// <param name="options">The task creation options</param>
         public void Start(Action action, TaskCreationOptions options)
         {
             var task = new Task(action, options);
@@ -31,12 +54,12 @@ namespace TaskParallel.Extensions
 
         private void Start(Task task)
         {
-            task.ContinueWith(
-                t => {
+            task.ContinueWith(t => 
+                {
                     var aggregateException = new AggregateException(t.Exception);
                     var unobservedTaskExceptionEventArgs = new UnobservedTaskExceptionEventArgs(aggregateException);
                     this.InvokeError(t, unobservedTaskExceptionEventArgs);
-                    },
+                },
                 TaskContinuationOptions.OnlyOnFaulted | TaskContinuationOptions.ExecuteSynchronously);
             task.Start();
         }
