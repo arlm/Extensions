@@ -43,6 +43,9 @@
     <None Include="..\Extensions.licenseheader">
       <Link>Extensions.licenseheader</Link>
     </None>
+    <None Include="..\Extensions.snk">
+      <Link>Extensions.snk</Link>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

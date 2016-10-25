@@ -38,10 +38,20 @@
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>..\Extensions.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
     <None Include="..\Extensions.licenseheader">
       <Link>Extensions.licenseheader</Link>
+    </None>
+    <None Include="..\Extensions.snk">
+      <Link>Extensions.snk</Link>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
