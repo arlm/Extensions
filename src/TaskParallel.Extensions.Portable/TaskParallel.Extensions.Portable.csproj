@@ -38,6 +38,12 @@
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>..\Extensions.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\Extensions.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
     <ProjectReference Include="..\Debugging.Extensions.Portable\Debugging.Extensions.Portable.csproj">
