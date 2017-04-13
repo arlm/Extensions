@@ -55,6 +55,8 @@
     <Compile Include="AsyncPump.cs" />
     <Compile Include="TaskParallelExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaskSchedulers\CurrentThreadTaskScheduler.cs" />
+    <Compile Include="TaskSchedulers\SynchronizationContextTaskScheduler.cs" />
     <Compile Include="ThreadFactory.cs" />
   </ItemGroup>
   <ItemGroup>
